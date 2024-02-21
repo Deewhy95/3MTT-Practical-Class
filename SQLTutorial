@@ -1,0 +1,20 @@
+##Creating employee demographics table with the employeeID as primary key
+CREATE TABLE [dbo].[EmployeesDemographics] (
+    [EmployeeID] INT          NOT NULL,
+    [Firstname]  VARCHAR (50) NULL,
+    [LastName]   VARCHAR (50) NULL,
+    [Age]        INT          NULL,
+    [Gender]     VARCHAR (50) NULL,
+    CONSTRAINT [PK_EmployeesDemographics] PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
+);
+
+
+##Check the table design
+SELECT TOP (1000) [EmployeeID]
+      ,[Firstname]
+      ,[LastName]
+      ,[Age]
+      ,[Gender]
+  FROM [SQLTutorial].[dbo].[EmployeesDemographics]
+
+  
