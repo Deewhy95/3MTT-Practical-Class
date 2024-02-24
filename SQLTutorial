@@ -1,60 +1,59 @@
 -- Creating employee demographics table with the employeeID as primary key
-CREATE TABLE [dbo].[EmployeesDemographics] (
-    [EmployeeID] INT          NOT NULL,
-    [Firstname]  VARCHAR (50) NULL,
-    [LastName]   VARCHAR (50) NULL,
-    [Age]        INT          NULL,
-    [Gender]     VARCHAR (50) NULL,
-    CONSTRAINT [PK_EmployeesDemographics] PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
+CREATE TABLE [dbo].[EmployeeDemographics] (
+    [EmployeeID]    INT          NOT NULL,
+    [FirstName]     VARCHAR (50) NULL,
+    [LastName]      VARCHAR (50) NULL,
+    [Gender]        VARCHAR (50) NULL,
+    [Age]           INT          NULL,
+    [LengthService] INT          NULL,
+    CONSTRAINT [PK_EmployeeDemographics] PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
 );
 
 
--- display the table design
+-- display the top 1000 employee demographics
 SELECT TOP (1000) [EmployeeID]
-      ,[Firstname]
+      ,[FirstName]
       ,[LastName]
-      ,[Age]
       ,[Gender]
-  FROM [SQLTutorial].[dbo].[EmployeesDemographics]
-
-INSERT INTO EmployeesDemographics VALUES
-  (1001, 'Jim', 'Halpert', 30, 'Male'),
-  (1002, 'Pam', 'Beasley', 30, 'Female'),
-  (1003, 'Dwight', 'Schrute', 29, 'Male'),
-  (1004, 'Angela', 'Martin', 31, 'Female'),
-  (1005, 'Toby', 'Flenderson', 32, 'Male'),
-  (1006, 'Michael', 'Scott', 35, 'Male'),
-  (1007, 'Meredith', 'Palmer', 32, 'Female'),
-  (1008, 'Stanley', 'Hudson', 38, 'male'),
-  (1009, 'Kevin', 'Malone', 31, 'Male')
+      ,[Age]
+      ,[LengthService]
+  FROM [SQLTutorial].[dbo].[EmployeeDemographics]
 
 
 -- Creating employee Salary table 
-CREATE TABLE [dbo].[EmployeeSalary] (
-    [EmployeeID] INT          NOT NULL,
-    [JobTitle]   VARCHAR (50) NULL,
-    [Salary]     INT          NULL,
-    CONSTRAINT [PK_EmployeeSalary] PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
+CREATE TABLE [dbo].[EmployeeSalary$] (
+    [EmployeeID]     INT          NOT NULL,
+    [JobTitle]       VARCHAR (50) NULL,
+    [Salary]         INT          NULL,
+    [DepartmentName] VARCHAR (50) NULL,
+    [StoreLocation]  VARCHAR (50) NULL,
+    CONSTRAINT [PK_EmployeeSalary$] PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
 );
 
--- display the table design
+-- display the top 1000 employee salary
 SELECT TOP (1000) [EmployeeID]
       ,[JobTitle]
       ,[Salary]
-  FROM [SQLTutorial].[dbo].[EmployeeSalary]
+      ,[DepartmentName]
+      ,[StoreLocation]
+  FROM [SQLTutorial].[dbo].[EmployeeSalary$]
 
-  -- Insert rows into table 'TableName' in schema '[dbo]'
-INSERT INTO [dbo].[EmployeeSalary]
-( -- Columns to insert data into
- [EmployeeID], [JobTitle], [Salary]
-)
-VALUES
-(1001, 'Salesman', 45000),
-(1002, 'Receptionist', 36000),
-(1003, 'Salesman', 63000),
-(1004, 'Accountant', 47000),
-(1005,'HR', 50000),
-(1006, 'Regional Manager', 65000),
-(1007, 'Supplier Relations', 41000),
-(1008, 'Salesman', 48000),
-(1009, 'Accountant', 42000)
+
+
+CREATE TABLE [dbo].[WarehouseEmployeeDemographics] (
+    [EmployeeID]    INT          NOT NULL,
+    [LastName]      VARCHAR (50) NULL,
+    [FirstName]     VARCHAR (50) NULL,
+    [Age]           INT          NULL,
+    [Gender]        VARCHAR (50) NULL,
+    [LengthService] INT          NULL,
+    CONSTRAINT [PK_WarehouseEmployeeDemographics] PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
+);
+
+SELECT TOP (1000) [EmployeeID]
+      ,[LastName]
+      ,[FirstName]
+      ,[Age]
+      ,[Gender]
+      ,[LengthService]
+  FROM [SQLTutorial].[dbo].[WarehouseEmployeeDemographics]
