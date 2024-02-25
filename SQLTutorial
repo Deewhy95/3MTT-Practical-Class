@@ -39,17 +39,7 @@ SELECT TOP (1000) [EmployeeID]
   FROM [SQLTutorial].[dbo].[EmployeeSalary$]
 
 
-
-CREATE TABLE [dbo].[WarehouseEmployeeDemographics] (
-    [EmployeeID]    INT          NOT NULL,
-    [LastName]      VARCHAR (50) NULL,
-    [FirstName]     VARCHAR (50) NULL,
-    [Age]           INT          NULL,
-    [Gender]        VARCHAR (50) NULL,
-    [LengthService] INT          NULL,
-    CONSTRAINT [PK_WarehouseEmployeeDemographics] PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
-);
-
+-- display the top 1000 warehouse employee Demographic salary
 SELECT TOP (1000) [EmployeeID]
       ,[LastName]
       ,[FirstName]
@@ -57,3 +47,15 @@ SELECT TOP (1000) [EmployeeID]
       ,[Gender]
       ,[LengthService]
   FROM [SQLTutorial].[dbo].[WarehouseEmployeeDemographics]
+  
+
+
+  -- select the top 15 Minimun salary, Maximum salary and Average Salary across the dapartment
+SELECT Top(15) [DepartmentName],
+    COUNT(DepartmentName) AS Number_of_Department,
+    AVG(Salary) AS AverageSalary,
+    MIN(Salary) AS MinimumSalary,
+    MAX(Salary) AS MaximumSalary
+FROM EmployeeSalary$
+GROUP BY DepartmentName
+ORDER BY COUNT(DepartmentName) DESC
