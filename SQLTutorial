@@ -41,8 +41,7 @@ FROM EmployeeSalary$
 GROUP BY DepartmentName
 ORDER BY COUNT(DepartmentName) DESC
 
---There is an anomaly in salary column '250 instead of 25000' 
--- I will correct that by updating the salary column in the employee database
+-- change the anomly salary with employeeID 2167849
 SELECT *
 FROM EmployeeSalary$
 WHERE Salary = 250
