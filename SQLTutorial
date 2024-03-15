@@ -1,4 +1,4 @@
--- Creating employee demographics table with the employeeID as primary key
+-- Create employee demographics table with the employeeID as primary key
 CREATE TABLE [dbo].[EmployeeDemographics] (
     [EmployeeID]    INT          NOT NULL,
     [FirstName]     VARCHAR (50) NULL,
@@ -10,17 +10,7 @@ CREATE TABLE [dbo].[EmployeeDemographics] (
 );
 
 
--- display the top 1000 employee demographics
-SELECT TOP (1000) [EmployeeID]
-      ,[FirstName]
-      ,[LastName]
-      ,[Gender]
-      ,[Age]
-      ,[LengthService]
-  FROM [SQLTutorial].[dbo].[EmployeeDemographics]
-
-
--- Creating employee Salary table 
+-- Create Employee Salary table 
 CREATE TABLE [dbo].[EmployeeSalary$] (
     [EmployeeID]     INT          NOT NULL,
     [JobTitle]       VARCHAR (50) NULL,
@@ -30,25 +20,16 @@ CREATE TABLE [dbo].[EmployeeSalary$] (
     CONSTRAINT [PK_EmployeeSalary$] PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
 );
 
--- display the top 1000 employee salary
-SELECT TOP (1000) [EmployeeID]
-      ,[JobTitle]
-      ,[Salary]
-      ,[DepartmentName]
-      ,[StoreLocation]
-  FROM [SQLTutorial].[dbo].[EmployeeSalary$]
-
-
--- display the top 1000 warehouse employee Demographic salary
-SELECT TOP (1000) [EmployeeID]
-      ,[LastName]
-      ,[FirstName]
-      ,[Age]
-      ,[Gender]
-      ,[LengthService]
-  FROM [SQLTutorial].[dbo].[WarehouseEmployeeDemographics]
-  
-
+-- Create Employee Damographics for America warehouse
+CREATE TABLE [dbo].[WarehouseEmployeeDemographics] (
+    [EmployeeID]    INT          NOT NULL,
+    [LastName]      VARCHAR (50) NULL,
+    [FirstName]     VARCHAR (50) NULL,
+    [Age]           INT          NULL,
+    [Gender]        VARCHAR (50) NULL,
+    [LengthService] INT          NULL,
+    CONSTRAINT [PK_WarehouseEmployeeDemographics] PRIMARY KEY CLUSTERED ([EmployeeID] ASC)
+);
 
   -- select the top 15 Minimun salary, Maximum salary and Average Salary across the dapartment
 SELECT Top(15) [DepartmentName],
@@ -59,3 +40,15 @@ SELECT Top(15) [DepartmentName],
 FROM EmployeeSalary$
 GROUP BY DepartmentName
 ORDER BY COUNT(DepartmentName) DESC
+
+--There is an anomaly in salary column '250 instead of 25000' 
+-- I will correct that by updating the salary column in the employee database
+SELECT *
+FROM EmployeeSalary$
+WHERE Salary = 250
+
+
+-- update the salary column with the correct salary figure $25000
+UPDATE EmployeeSalary$
+SET Salary = 25000
+WHERE EmployeeID = 2167849
